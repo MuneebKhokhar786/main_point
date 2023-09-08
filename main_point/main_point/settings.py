@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'gdstorage'
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# cloud services credentials
+GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = '../main_point/mainpoint-c8d1e3b27c9c.json'
+GOOGLE_DRIVE_STORAGE_MEDIA_ROOT = 'main_point/media/'

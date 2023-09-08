@@ -1,9 +1,11 @@
 from django.shortcuts import render
-from .models import Product
+from .models import Product, Collection
 
 def index(request):
     products = Product.objects.all()
-    return render(request, 'laptop_shop/index.html', {'products': products})
+    collections = Collection.objects.all()
+    return render(request, 'laptop_shop/index.html', {'products': products, 'collections': collections})
+
 
 def show(request, product_id):
     try:
