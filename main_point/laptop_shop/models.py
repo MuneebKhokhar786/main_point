@@ -3,7 +3,7 @@ from django.db import models
 class Collection(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
-    image = models.ImageField(upload_to='collection_images/', null=True)
+    image = models.ImageField(upload_to='laptop_shop/static/laptop_shop/images/collections/', null=True)
 
     def __str__(self):
         return self.name
