@@ -7,7 +7,7 @@ gd_storage = GoogleDriveStorage()
 class Collection(GoogleDriveFileMixin, models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
-    image = models.ImageField(upload_to='main_point/media/collections/images/', storage=gd_storage, null=True)
+    image = models.ImageField(upload_to='main_point/media/collections/images/', storage=gd_storage)
 
     def __str__(self):
         return self.name

@@ -1,4 +1,3 @@
-# mixins.py
 from django.db import models
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
@@ -21,6 +20,18 @@ class GoogleDriveFileMixin(models.Model):
             # Use the Google Drive API to delete the file
             drive_service.files().delete(fileId=file_id).execute()
 
+    def delete_old_google_drive_file(self):
+        try:
+            current_instance = self.__class__.objects.get(pk=self.pk)
+            if current_instance.image != self.image:
+                current_instance.delete_google_drive_file()
+        except self.__class__.DoesNotExist:
+            pass
+
     def delete(self, *args, **kwargs):
         self.delete_google_drive_file()
         super().delete(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        self.delete_old_google_drive_file()
+        super().save(*args, **kwargs)
