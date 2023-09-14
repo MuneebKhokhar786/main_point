@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+# cloudinary imports
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'gdstorage'
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
@@ -124,6 +129,9 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# cloud services credentials
-GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = '../main_point/mainpoint-c8d1e3b27c9c.json'
-GOOGLE_DRIVE_STORAGE_MEDIA_ROOT = 'main_point/media/'
+# cloudinary credentials
+cloudinary.config(
+  cloud_name = "dampvdmwf",
+  api_key = "394793753469515",
+  api_secret = "DWHdIPhT-TekdPxvF2dVMbV2ZTU"
+)
