@@ -82,8 +82,11 @@ WSGI_APPLICATION = 'main_point.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'OPTIONS': {
+            'service': 'db_main_point',
+            'passfile': '.my_pgpass',
+        },
     }
 }
 
@@ -131,7 +134,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # cloudinary credentials
 cloudinary.config(
-  cloud_name = "dampvdmwf",
-  api_key = "394793753469515",
-  api_secret = "DWHdIPhT-TekdPxvF2dVMbV2ZTU"
+    cloud_name = "dampvdmwf",
+    api_key = "394793753469515",
+    api_secret = "DWHdIPhT-TekdPxvF2dVMbV2ZTU"
 )
