@@ -1,17 +1,26 @@
 from django.shortcuts import render
-from django.db.models import Count
-from .models import Product, Collection
+from django.db.models import Count, OuterRef, Subquery
+from .models import Product, Collection, ProductImage
 
 
 def home(request):
     products = Product.objects.all()
-    collections = Collection.objects.annotate(product_count=Count('product')).filter(product_count__gt=0)
-    return render(request, 'laptop_shop/home.html', {'products': products, 'collections': collections})
+    first_product_image = ProductImage.objects.filter(product=OuterRef('pk')).order_by('id')[:1]
+    products_with_first_image = products.annotate(image=Subquery(first_product_image.values('image')))
+
+    collections = Collection.objects.annotate(product_count=Count('product')).filter(product_count__gt=0).order_by('id')
+    for collection in collections:
+        collection_with_first_image = collection.product_set.annotate(image=Subquery(first_product_image.values('image')))
+        collection.products = collection_with_first_image
+    return render(request, 'laptop_shop/home.html', {'products': products_with_first_image, 'collections': collections})
 
 
 def index(request):
     products = Product.objects.all()
-    return render(request, 'laptop_shop/index.html', {'products': products})
+    first_product_image = ProductImage.objects.filter(product=OuterRef('pk')).order_by('id')[:1]
+    products_with_first_image = products.annotate(image=Subquery(first_product_image.values('image')))
+
+    return render(request, 'laptop_shop/index.html', {'products': products_with_first_image})
 
 
 def show(request, product_id):
