@@ -15,16 +15,14 @@ def home(request):
     return render(request, 'laptop_shop/home.html', {'products': products_with_first_image, 'collections': collections})
 
 
-def index(request):
-    products = Product.objects.all()
+def index(request, collection_name):
+    products = Product.objects.filter(collection__name__iexact= collection_name)
     first_product_image = ProductImage.objects.filter(product=OuterRef('pk')).order_by('id')[:1]
     products_with_first_image = products.annotate(image=Subquery(first_product_image.values('image')))
 
     return render(request, 'laptop_shop/index.html', {'products': products_with_first_image})
 
 
-def show(request, product_id):
-    try:
-        product = Product.objects.get(id=product_id)
-    except Product.DoesNotExist:
-        return render(request, 'laptop_shop/show.html', {'product': None})
+def show(request, product_slug):
+        product = Product.objects.get(slug__iexact=product_slug)
+        return render(request, 'laptop_shop/show.html', {'product': product})
