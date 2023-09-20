@@ -23,7 +23,6 @@ certifi==2019.11.28
 cffi==1.15.1
 chardet==3.0.4
 charset-normalizer==3.2.0
-chrome-gnome-shell==0.0.0
 Click==7.0
 cloudinary==1.34.0
 colorama==0.4.3
