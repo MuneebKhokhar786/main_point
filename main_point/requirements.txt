@@ -68,6 +68,7 @@ google-auth==1.35.0
 google-auth-httplib2==0.1.0
 google-auth-oauthlib==1.0.0
 googleapis-common-protos==1.60.0
+gunicorn==21.2.0
 httplib2==0.22.0
 idna==2.8
 importlib-metadata==6.8.0
@@ -127,6 +128,7 @@ packaging==23.1
 pandocfilters==1.5.0
 paramiko==2.6.0
 parso==0.8.3
+pbr==5.11.1
 pexpect==4.6.0
 pickleshare==0.7.5
 Pillow==10.0.0
@@ -195,6 +197,7 @@ sqlparse==0.4.4
 stack-data==0.6.2
 systemd-python==234
 terminado==0.17.1
+testresources==2.0.1
 texttable==1.6.2
 tinycss2==1.2.1
 tomli==2.0.1
